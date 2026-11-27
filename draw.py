@@ -4,6 +4,7 @@ import inspect, shlex
 import math
 import os
 import platform
+import re
 
 code = inspect.getsource(shlex.quote)
 tree = ast.parse(code)
@@ -115,7 +116,8 @@ parts.append('</style>')
 parts.append(f'<rect width="{W}" height="{H}" fill="#0e0e0d"/>')
 
 parts.append(f'<text class="title" x="{PAD}" y="170">{escape(name)}</text>')
-parts.append(f'<text class="doc" x="{PAD}" y="218">{escape(summary)}</text>')
+caption = re.sub(r"\*([^*\s][^*]*?)\*", r'<tspan font-style="normal">\1</tspan>', escape(summary))
+parts.append(f'<text class="doc" x="{PAD}" y="218">{caption}</text>')
 
 for node in x:
     for child in ast.iter_child_nodes(node):
@@ -124,7 +126,8 @@ for node in x:
             x1, y1 = sx(node), sy(node)
             x2, y2 = sx(child), sy(child)
             mid = (y1 + y2) / 2
-            parts.append(f'<path d="M {x1} {y1} C {x1} {mid}, {x2} {mid}, {x2} {y2}" fill="none" stroke="#ece7de" stroke-width="{w}" stroke-linecap="round"/>')
+            cap = "butt" if node is tree else "round"
+            parts.append(f'<path d="M {x1} {y1} C {x1} {mid}, {x2} {mid}, {x2} {y2}" fill="none" stroke="#ece7de" stroke-width="{w}" stroke-linecap="{cap}"/>')
 
 for leaf in leaves:
     if isinstance(leaf, ast.Constant):
