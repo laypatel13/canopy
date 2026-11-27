@@ -54,6 +54,14 @@ top = max(leaf_ys)
 for leaf in leaves:
     y[leaf] = top
 
+def count(node):
+    if isinstance(node, ast.Name) or isinstance(node, ast.Constant):
+        return 1
+    num = 0
+    for child in ast.iter_child_nodes(node):
+        num += count(child)
+    return num
+
 GAP_X = 120
 GAP_Y = 70
 PAD = 80
@@ -74,7 +82,8 @@ parts.append(f'<rect width="{width}" height="{height}" fill="#0e0e0d"/>')
 for node in x:
     for child in ast.iter_child_nodes(node):
         if child in x:
-            parts.append(f'<line x1="{sx(node)}" y1="{sy(node)}" x2="{sx(child)}" y2="{sy(child)}" stroke="#ece7de" stroke-width="2"/>')
+            w = count(child) * 2
+            parts.append(f'<line x1="{sx(node)}" y1="{sy(node)}" x2="{sx(child)}" y2="{sy(child)}" stroke="#ece7de" stroke-width="{w}" stroke-linecap="round"/>')
 
 for leaf in leaves:
     if isinstance(leaf, ast.Name):
