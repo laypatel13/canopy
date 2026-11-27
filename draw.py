@@ -109,14 +109,14 @@ parts.append(f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" 
 parts.append('<style>')
 parts.append(f"@import url('{FONTS}');")
 parts.append(".title { font: 76px Newsreader, Georgia, serif; fill: #ece7de; }")
-parts.append(".doc { font: italic 26px Newsreader, Georgia, serif; fill: #8f8a80; }")
+parts.append(".doc { font: 26px Newsreader, Georgia, serif; fill: #8f8a80; }")
 parts.append(f".leaf {{ font: {LEAF_SIZE}px 'Geist Mono', ui-monospace, monospace; dominant-baseline: central; }}")
 parts.append(".ground { font: 15px 'Geist Mono', ui-monospace, monospace; fill: #8f8a80; letter-spacing: 0.04em; }")
 parts.append('</style>')
 parts.append(f'<rect width="{W}" height="{H}" fill="#0e0e0d"/>')
 
 parts.append(f'<text class="title" x="{PAD}" y="170">{escape(name)}</text>')
-caption = re.sub(r"\*([^*\s][^*]*?)\*", r'<tspan font-style="normal">\1</tspan>', escape(summary))
+caption = re.sub(r"\*([^*\s][^*]*?)\*", r'<tspan font-style="italic">\1</tspan>', escape(summary))
 parts.append(f'<text class="doc" x="{PAD}" y="218">{caption}</text>')
 
 for node in x:

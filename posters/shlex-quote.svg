@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1697" viewBox="0 0 1200 1697">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz@0,6..72;1,6..72&amp;family=Geist+Mono&amp;display=swap');
+.title { font: 76px Newsreader, Georgia, serif; fill: #ece7de; }
+.doc { font: 26px Newsreader, Georgia, serif; fill: #8f8a80; }
+.leaf { font: 18px 'Geist Mono', ui-monospace, monospace; dominant-baseline: central; }
+.ground { font: 15px 'Geist Mono', ui-monospace, monospace; fill: #8f8a80; letter-spacing: 0.04em; }
+</style>
+<rect width="1200" height="1697" fill="#0e0e0d"/>
+<text class="title" x="100" y="170">quote</text>
+<text class="doc" x="100" y="218">Return a shell-escaped version of the string <tspan font-style="italic">s</tspan>.</text>
+<path d="M 100.0 1161.2 C 100.0 795.4000000000001, 100.0 795.4000000000001, 100.0 429.6" fill="none" stroke="#ece7de" stroke-width="2.0" stroke-linecap="round"/>
+<path d="M 190.9090909090909 978.3000000000001 C 190.9090909090909 703.95, 190.9090909090909 703.95, 190.9090909090909 429.6" fill="none" stroke="#ece7de" stroke-width="2.0" stroke-linecap="round"/>
+<path d="M 281.8181818181818 978.3000000000001 C 281.8181818181818 703.95, 281.8181818181818 703.95, 281.8181818181818 429.6" fill="none" stroke="#ece7de" stroke-width="2.0" stroke-linecap="round"/>
+<path d="M 236.36363636363637 1161.2 C 236.36363636363637 1069.75, 190.9090909090909 1069.75, 190.9090909090909 978.3000000000001" fill="none" stroke="#ece7de" stroke-width="2.0" stroke-linecap="round"/>
+<path d="M 236.36363636363637 1161.2 C 236.36363636363637 1069.75, 281.8181818181818 1069.75, 281.8181818181818 978.3000000000001" fill="none" stroke="#ece7de" stroke-width="2.0" stroke-linecap="round"/>
+<path d="M 418.1818181818182 795.4000000000001 C 418.1818181818182 612.5, 372.72727272727275 612.5, 372.72727272727275 429.6" fill="none" stroke="#ece7de" stroke-width="2.0" stroke-linecap="round"/>
+<path d="M 418.1818181818182 795.4000000000001 C 418.1818181818182 612.5, 463.6363636363636 612.5, 463.6363636363636 429.6" fill="none" stroke="#ece7de" stroke-width="2.0" stroke-linecap="round"/>
+<path d="M 463.6363636363636 978.3000000000001 C 463.6363636363636 886.8500000000001, 418.1818181818182 886.8500000000001, 418.1818181818182 795.4000000000001" fill="none" stroke="#ece7de" stroke-width="2.8" stroke-linecap="round"/>
+<path d="M 463.6363636363636 978.3000000000001 C 463.6363636363636 703.95, 554.5454545454545 703.95, 554.5454545454545 429.6" fill="none" stroke="#ece7de" stroke-width="2.0" stroke-linecap="round"/>
+<path d="M 645.4545454545455 978.3000000000001 C 645.4545454545455 703.95, 645.4545454545455 703.95, 645.4545454545455 429.6" fill="none" stroke="#ece7de" stroke-width="2.0" stroke-linecap="round"/>
+<path d="M 509.09090909090907 1161.2 C 509.09090909090907 1069.75, 463.6363636363636 1069.75, 463.6363636363636 978.3000000000001" fill="none" stroke="#ece7de" stroke-width="3.5" stroke-linecap="round"/>
+<path d="M 509.09090909090907 1161.2 C 509.09090909090907 1069.75, 645.4545454545455 1069.75, 645.4545454545455 978.3000000000001" fill="none" stroke="#ece7de" stroke-width="2.0" stroke-linecap="round"/>
+<path d="M 918.1818181818181 612.5 C 918.1818181818181 521.05, 827.2727272727273 521.05, 827.2727272727273 429.6" fill="none" stroke="#ece7de" stroke-width="2.0" stroke-linecap="round"/>
+<path d="M 918.1818181818181 612.5 C 918.1818181818181 521.05, 918.1818181818181 521.05, 918.1818181818181 429.6" fill="none" stroke="#ece7de" stroke-width="2.0" stroke-linecap="round"/>
+<path d="M 918.1818181818181 612.5 C 918.1818181818181 521.05, 1009.090909090909 521.05, 1009.090909090909 429.6" fill="none" stroke="#ece7de" stroke-width="2.0" stroke-linecap="round"/>
+<path d="M 872.7272727272727 795.4000000000001 C 872.7272727272727 612.5, 736.3636363636364 612.5, 736.3636363636364 429.6" fill="none" stroke="#ece7de" stroke-width="2.0" stroke-linecap="round"/>
+<path d="M 872.7272727272727 795.4000000000001 C 872.7272727272727 703.95, 918.1818181818181 703.95, 918.1818181818181 612.5" fill="none" stroke="#ece7de" stroke-width="3.5" stroke-linecap="round"/>
+<path d="M 918.1818181818181 978.3000000000001 C 918.1818181818181 886.8500000000001, 872.7272727272727 886.8500000000001, 872.7272727272727 795.4000000000001" fill="none" stroke="#ece7de" stroke-width="4.0" stroke-linecap="round"/>
+<path d="M 918.1818181818181 978.3000000000001 C 918.1818181818181 703.95, 1100.0 703.95, 1100.0 429.6" fill="none" stroke="#ece7de" stroke-width="2.0" stroke-linecap="round"/>
+<path d="M 918.1818181818181 1161.2 C 918.1818181818181 1069.75, 918.1818181818181 1069.75, 918.1818181818181 978.3000000000001" fill="none" stroke="#ece7de" stroke-width="4.5" stroke-linecap="round"/>
+<path d="M 600.0 1344.1 C 600.0 1252.65, 100.0 1252.65, 100.0 1161.2" fill="none" stroke="#ece7de" stroke-width="2.0" stroke-linecap="round"/>
+<path d="M 600.0 1344.1 C 600.0 1252.65, 236.36363636363637 1252.65, 236.36363636363637 1161.2" fill="none" stroke="#ece7de" stroke-width="2.8" stroke-linecap="round"/>
+<path d="M 600.0 1344.1 C 600.0 1252.65, 509.09090909090907 1252.65, 509.09090909090907 1161.2" fill="none" stroke="#ece7de" stroke-width="4.0" stroke-linecap="round"/>
+<path d="M 600.0 1344.1 C 600.0 1252.65, 918.1818181818181 1252.65, 918.1818181818181 1161.2" fill="none" stroke="#ece7de" stroke-width="4.5" stroke-linecap="round"/>
+<path d="M 600.0 1527.0 C 600.0 1435.55, 600.0 1435.55, 600.0 1344.1" fill="none" stroke="#ece7de" stroke-width="6.9" stroke-linecap="butt"/>
+<text class="leaf" x="100.0" y="413.6" fill="#4fd08b" transform="rotate(-90 100.0 413.6)">s</text>
+<text class="leaf" x="190.9090909090909" y="413.6" fill="#4fd08b" transform="rotate(-90 190.9090909090909 413.6)">s</text>
+<text class="leaf" x="281.8181818181818" y="413.6" fill="#ece7de" transform="rotate(-90 281.8181818181818 413.6)">&quot;&#x27;&#x27;&quot;</text>
+<text class="leaf" x="372.72727272727275" y="413.6" fill="#4fd08b" transform="rotate(-90 372.72727272727275 413.6)">_find_unsafe</text>
+<text class="leaf" x="463.6363636363636" y="413.6" fill="#4fd08b" transform="rotate(-90 463.6363636363636 413.6)">s</text>
+<text class="leaf" x="554.5454545454545" y="413.6" fill="#ece7de" transform="rotate(-90 554.5454545454545 413.6)">None</text>
+<text class="leaf" x="645.4545454545455" y="413.6" fill="#4fd08b" transform="rotate(-90 645.4545454545455 413.6)">s</text>
+<text class="leaf" x="736.3636363636364" y="413.6" fill="#ece7de" transform="rotate(-90 736.3636363636364 413.6)">&quot;&#x27;&quot;</text>
+<text class="leaf" x="827.2727272727273" y="413.6" fill="#4fd08b" transform="rotate(-90 827.2727272727273 413.6)">s.replace</text>
+<text class="leaf" x="918.1818181818181" y="413.6" fill="#ece7de" transform="rotate(-90 918.1818181818181 413.6)">&quot;&#x27;&quot;</text>
+<text class="leaf" x="1009.090909090909" y="413.6" fill="#ece7de" transform="rotate(-90 1009.090909090909 413.6)">&#x27;\&#x27;&quot;\&#x27;&quot;\&#x27;&#x27;</text>
+<text class="leaf" x="1100.0" y="413.6" fill="#ece7de" transform="rotate(-90 1100.0 413.6)">&quot;&#x27;&quot;</text>
+<line x1="100" y1="1527" x2="1100" y2="1527" stroke="#8f8a80" stroke-width="1"/>
+<text class="ground" x="100" y="1577">cpython 3.11.9 · Lib/shlex.py · line 325</text>
+</svg>
