@@ -118,7 +118,10 @@ for node in x:
     for child in ast.iter_child_nodes(node):
         if child in x:
             w = 2 * math.sqrt(count(child))
-            parts.append(f'<line x1="{sx(node)}" y1="{sy(node)}" x2="{sx(child)}" y2="{sy(child)}" stroke="#ece7de" stroke-width="{w}" stroke-linecap="round"/>')
+            x1, y1 = sx(node), sy(node)
+            x2, y2 = sx(child), sy(child)
+            mid = (y1 + y2) / 2
+            parts.append(f'<path d="M {x1} {y1} C {x1} {mid}, {x2} {mid}, {x2} {y2}" fill="none" stroke="#ece7de" stroke-width="{w}" stroke-linecap="round"/>')
 
 for leaf in leaves:
     if isinstance(leaf, ast.Constant):
