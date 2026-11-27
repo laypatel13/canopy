@@ -162,5 +162,8 @@ parts.append(f'<text class="ground" x="{PAD}" y="{ground_y + 50}">{escape(ground
 
 parts.append('</svg>')
 
-with open("poster.svg", "w") as f:
+with open(f"{number}.py", "w") as f:
+    f.write(code)
+
+with open(f"{number}.svg", "w") as f:
     f.write("\n".join(parts))
