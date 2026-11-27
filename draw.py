@@ -30,8 +30,8 @@ def label(node):
     if isinstance(node, ast.arg):
         return node.arg
     if isinstance(node, ast.Attribute):
-        return ast.unparse(node)         
-    return node.value
+        return ast.unparse(node)
+    return repr(node.value)
 
 def place(node):
     if node in x:
