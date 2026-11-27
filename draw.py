@@ -1,6 +1,7 @@
 import ast
 from html import escape
 import inspect, shlex
+import math
 
 code = inspect.getsource(shlex.quote)
 tree = ast.parse(code)
@@ -96,7 +97,7 @@ parts.append(f'<rect width="{width}" height="{height}" fill="#0e0e0d"/>')
 for node in x:
     for child in ast.iter_child_nodes(node):
         if child in x:
-            w = count(child) * 2
+            w = 2 * math.sqrt(count(child))
             parts.append(f'<line x1="{sx(node)}" y1="{sy(node)}" x2="{sx(child)}" y2="{sy(child)}" stroke="#ece7de" stroke-width="{w}" stroke-linecap="round"/>')
 
 for leaf in leaves:
