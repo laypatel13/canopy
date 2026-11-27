@@ -1,15 +1,24 @@
 import ast
 from html import escape
+import inspect, shlex
 
-code = "total = price * 2 + tax"
+code = inspect.getsource(shlex.quote)
 tree = ast.parse(code)
+
+func = tree.body[0]
+doc = ast.get_docstring(func)
+if doc is not None:
+    func.body = func.body[1:]
 
 leaves = []
 x = {}
 y = {}
 
+def is_leaf(node):
+    return isinstance(node, (ast.Name, ast.Constant, ast.arg))
+
 def visit(node):
-    if isinstance(node, ast.Name) or isinstance(node, ast.Constant):
+    if is_leaf(node):
         leaves.append(node)
     for child in ast.iter_child_nodes(node):
         visit(child)
@@ -17,6 +26,8 @@ def visit(node):
 def label(node):
     if isinstance(node, ast.Name):
         return node.id
+    if isinstance(node, ast.arg):
+        return node.arg
     return node.value
 
 def place(node):
@@ -55,7 +66,7 @@ for leaf in leaves:
     y[leaf] = top
 
 def count(node):
-    if isinstance(node, ast.Name) or isinstance(node, ast.Constant):
+    if is_leaf(node):
         return 1
     num = 0
     for child in ast.iter_child_nodes(node):
@@ -86,10 +97,10 @@ for node in x:
             parts.append(f'<line x1="{sx(node)}" y1="{sy(node)}" x2="{sx(child)}" y2="{sy(child)}" stroke="#ece7de" stroke-width="{w}" stroke-linecap="round"/>')
 
 for leaf in leaves:
-    if isinstance(leaf, ast.Name):
-        colour = "#4fd08b"
-    else:
+    if isinstance(leaf, ast.Constant):
         colour = "#ece7de"
+    else:
+        colour = "#4fd08b"
     word = escape(str(label(leaf)))
     parts.append(f'<text x="{sx(leaf)}" y="{sy(leaf) - 16}" fill="{colour}" font-family="monospace" font-size="18" text-anchor="middle">{word}</text>')
 
