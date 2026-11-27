@@ -1,5 +1,6 @@
 import ast
 from html import escape
+from datetime import date  
 import inspect, shlex
 import math
 import os
@@ -36,9 +37,7 @@ if doc is not None:
     summary = doc.splitlines()[0]
 
 name = func.name
-file = os.path.basename(inspect.getsourcefile(shlex.quote))
-line = inspect.getsourcelines(shlex.quote)[1]
-ground = f"cpython {platform.python_version()} · Lib/{file} · line {line}"
+ground = f"LeetCode {number} · {date.today()}"
 
 leaves = []
 x = {}
