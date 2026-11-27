@@ -37,6 +37,14 @@ if doc is not None:
     summary = doc.splitlines()[0]
 
 name = func.name
+recursive = []
+for node in ast.walk(func):
+    if isinstance(node, ast.Call):
+        f = node.func
+        if isinstance(f, ast.Name) and f.id == name:
+            recursive.append(f)
+        if isinstance(f, ast.Attribute) and f.attr == name:
+            recursive.append(f)
 ground = f"LeetCode {number} · {date.today()}"
 
 leaves = []
@@ -184,7 +192,9 @@ for node in x:
         parts.append(f'<text class="joint" x="{jx + 12}" y="{jy}">{JOINTS[type(node)]}</text>')
 
 for leaf in leaves:
-    if type(leaf) in SYMBOLS:
+    if leaf in recursive:
+        colour = "#f2a65a"
+    elif type(leaf) in SYMBOLS:
         colour = "#8f8a80"
     elif isinstance(leaf, ast.Constant):
         colour = "#ece7de"
@@ -196,6 +206,9 @@ for leaf in leaves:
 
 parts.append(f'<line x1="{PAD}" y1="{ground_y}" x2="{W - PAD}" y2="{ground_y}" stroke="#8f8a80" stroke-width="1"/>')
 parts.append(f'<text class="ground" x="{PAD}" y="{ground_y + 50}">{escape(ground)}</text>')
+
+if recursive:
+    parts.append(f'<text class="ground" x="{W - PAD}" y="{ground_y + 50}" text-anchor="end" fill="#f2a65a">calls itself</text>')
 
 parts.append('</svg>')
 
