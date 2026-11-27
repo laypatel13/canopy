@@ -15,11 +15,12 @@ x = {}
 y = {}
 
 def is_leaf(node):
-    return isinstance(node, (ast.Name, ast.Constant, ast.arg))
+    return isinstance(node, (ast.Name, ast.Constant, ast.arg, ast.Attribute))
 
 def visit(node):
     if is_leaf(node):
         leaves.append(node)
+        return
     for child in ast.iter_child_nodes(node):
         visit(child)
 
@@ -28,6 +29,8 @@ def label(node):
         return node.id
     if isinstance(node, ast.arg):
         return node.arg
+    if isinstance(node, ast.Attribute):
+        return ast.unparse(node)         
     return node.value
 
 def place(node):
