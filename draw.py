@@ -44,16 +44,13 @@ def label(node):
 
 def place(node):
     if node in x:
-        return x[node]
+        return [x[node]]
     xs = []
     for child in ast.iter_child_nodes(node):
-        cx = place(child)
-        if cx is not None:
-            xs.append(cx)
-    if len(xs) == 0:
-        return None
-    x[node] = sum(xs) / len(xs)
-    return x[node]
+        xs += place(child)
+    if len(xs) > 0:
+        x[node] = sum(xs) / len(xs)
+    return xs
 
 def set_depth(node, depth):
     if node in x:
