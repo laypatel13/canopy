@@ -52,6 +52,14 @@ SYMBOLS = {
     ast.And: "and", ast.Or: "or", ast.Not: "not", ast.USub: "-", ast.UAdd: "+", ast.Invert: "~",
 }
 
+JOINTS = {
+    ast.arguments: "args",
+    ast.Return: "return",
+    ast.For: "for",
+    ast.While: "while",
+    ast.If: "if",
+}
+
 def is_leaf(node):
     return isinstance(node, (ast.Name, ast.Constant, ast.arg, ast.Attribute, ast.operator, ast.cmpop, ast.boolop, ast.unaryop))  
 
@@ -151,6 +159,7 @@ parts.append(".title { font: 76px Newsreader, Georgia, serif; fill: #ece7de; }")
 parts.append(".doc { font: 26px Newsreader, Georgia, serif; fill: #8f8a80; }")
 parts.append(f".leaf {{ font: {LEAF_SIZE}px 'Geist Mono', ui-monospace, monospace; dominant-baseline: central; }}")
 parts.append(".ground { font: 15px 'Geist Mono', ui-monospace, monospace; fill: #8f8a80; letter-spacing: 0.04em; }")
+parts.append(".joint { font: 14px 'Geist Mono', ui-monospace, monospace; fill: #8f8a80; dominant-baseline: central; paint-order: stroke; stroke: #0e0e0d; stroke-width: 6px; stroke-linejoin: round; }")
 parts.append('</style>')
 parts.append(f'<rect width="{W}" height="{H}" fill="#0e0e0d"/>')
 
@@ -167,6 +176,12 @@ for node in x:
             mid = (y1 + y2) / 2
             cap = "butt" if node is tree else "round"
             parts.append(f'<path d="M {x1} {y1} C {x1} {mid}, {x2} {mid}, {x2} {y2}" fill="none" stroke="#ece7de" stroke-width="{w}" stroke-linecap="{cap}"/>')
+
+for node in x:
+    if type(node) in JOINTS:
+        jx, jy = sx(node), sy(node)
+        parts.append(f'<circle cx="{jx}" cy="{jy}" r="4" fill="#0e0e0d" stroke="#ece7de" stroke-width="1.5"/>')
+        parts.append(f'<text class="joint" x="{jx + 12}" y="{jy}">{JOINTS[type(node)]}</text>')
 
 for leaf in leaves:
     if type(leaf) in SYMBOLS:
