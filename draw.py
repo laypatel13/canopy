@@ -43,8 +43,17 @@ leaves = []
 x = {}
 y = {}
 
+SYMBOLS = {
+    ast.Add: "+", ast.Sub: "-", ast.Mult: "*", ast.Div: "/", ast.FloorDiv: "//",
+    ast.Mod: "%", ast.Pow: "**", ast.LShift: "<<", ast.RShift: ">>",
+    ast.BitOr: "|", ast.BitXor: "^", ast.BitAnd: "&", ast.MatMult: "@",
+    ast.Eq: "==", ast.NotEq: "!=", ast.Lt: "<", ast.LtE: "<=", ast.Gt: ">", ast.GtE: ">=",
+    ast.Is: "is", ast.IsNot: "is not", ast.In: "in", ast.NotIn: "not in",
+    ast.And: "and", ast.Or: "or", ast.Not: "not", ast.USub: "-", ast.UAdd: "+", ast.Invert: "~",
+}
+
 def is_leaf(node):
-    return isinstance(node, (ast.Name, ast.Constant, ast.arg, ast.Attribute))
+    return isinstance(node, (ast.Name, ast.Constant, ast.arg, ast.Attribute, ast.operator, ast.cmpop, ast.boolop, ast.unaryop))  
 
 def visit(node):
     if is_leaf(node):
@@ -60,6 +69,8 @@ def label(node):
         return node.arg
     if isinstance(node, ast.Attribute):
         return ast.unparse(node)
+    if type(node) in SYMBOLS:
+        return SYMBOLS[type(node)]
     return repr(node.value)
 
 def place(node):
@@ -77,6 +88,15 @@ def set_depth(node, depth):
         y[node] = depth
     for child in ast.iter_child_nodes(node):
         set_depth(child, depth + 1)
+
+for node in ast.walk(tree):
+    if hasattr(node, "op"):
+        node.op = type(node.op)()
+    if isinstance(node, ast.Compare):
+        fresh = []
+        for op in node.ops:
+            fresh.append(type(op)())
+        node.ops = fresh
 
 visit(tree)
 
@@ -149,7 +169,9 @@ for node in x:
             parts.append(f'<path d="M {x1} {y1} C {x1} {mid}, {x2} {mid}, {x2} {y2}" fill="none" stroke="#ece7de" stroke-width="{w}" stroke-linecap="{cap}"/>')
 
 for leaf in leaves:
-    if isinstance(leaf, ast.Constant):
+    if type(leaf) in SYMBOLS:
+        colour = "#8f8a80"
+    elif isinstance(leaf, ast.Constant):
         colour = "#ece7de"
     else:
         colour = "#4fd08b"
