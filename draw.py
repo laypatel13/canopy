@@ -21,16 +21,21 @@ tree.body = [func]
 func.returns = None
 
 kept = []
+
 for arg in func.args.args:
     if arg.arg != "self":
         kept.append(arg)
+
 func.args.args = kept
+
 doc = ast.get_docstring(func)
+summary = ""
+
 if doc is not None:
     func.body = func.body[1:]
+    summary = doc.splitlines()[0]
 
 name = func.name
-summary = doc.splitlines()[0]
 file = os.path.basename(inspect.getsourcefile(shlex.quote))
 line = inspect.getsourcelines(shlex.quote)[1]
 ground = f"cpython {platform.python_version()} · Lib/{file} · line {line}"
