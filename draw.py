@@ -75,7 +75,10 @@ def visit(node):
     if is_leaf(node):
         leaves.append(node)
         return
-    for child in ast.iter_child_nodes(node):
+    children = list(ast.iter_child_nodes(node))
+    if isinstance(node, ast.BoolOp):
+        children = [children[1], children[0]] + children[2:]
+    for child in children:
         visit(child)
 
 def label(node):
