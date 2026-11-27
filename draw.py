@@ -18,6 +18,13 @@ def find_function(tree):
 
 func = find_function(tree)
 tree.body = [func]
+func.returns = None
+
+kept = []
+for arg in func.args.args:
+    if arg.arg != "self":
+        kept.append(arg)
+func.args.args = kept
 doc = ast.get_docstring(func)
 if doc is not None:
     func.body = func.body[1:]
