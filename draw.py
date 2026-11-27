@@ -5,8 +5,10 @@ import math
 import os
 import platform
 import re
+import sys
 
-code = inspect.getsource(shlex.quote)
+number = sys.argv[1]
+code = sys.stdin.read()
 tree = ast.parse(code)
 
 func = tree.body[0]
