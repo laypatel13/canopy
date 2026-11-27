@@ -11,7 +11,13 @@ number = sys.argv[1]
 code = sys.stdin.read()
 tree = ast.parse(code)
 
-func = tree.body[0]
+def find_function(tree):
+    for node in ast.walk(tree):
+        if isinstance(node, ast.FunctionDef):
+            return node
+
+func = find_function(tree)
+tree.body = [func]
 doc = ast.get_docstring(func)
 if doc is not None:
     func.body = func.body[1:]
