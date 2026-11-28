@@ -1,5 +1,7 @@
 import ast
+import json
 import sys
+from pathlib import Path
 from typing import List, Optional
 
 number = sys.argv[1]
@@ -91,7 +93,61 @@ sys.settrace(tracer)
 answer = solve(**inputs)
 sys.settrace(None)
 
-for step in steps:
-    print(step)
+children = []
+for call in calls:
+    children.append([])
 for i, call in enumerate(calls):
-    print(i, call)
+    if call["parent"] is not None:
+        children[call["parent"]].append(i)
+
+x = {}
+y = {}
+
+leaf = 0
+for i in range(len(calls)):
+    if not children[i]:
+        x[i] = leaf
+        leaf += 1
+
+def place(i):
+    if not children[i]:
+        return [x[i]]
+    xs = []
+    for child in children[i]:
+        xs += place(child)
+    x[i] = sum(xs) / len(xs)
+    return xs
+
+def set_depth(i, depth):
+    y[i] = depth
+    for child in children[i]:
+        set_depth(child, depth + 1)
+
+place(0)
+set_depth(0, 0)
+
+for i, call in enumerate(calls):
+    call["x"] = x[i]
+    call["depth"] = y[i]
+
+doc = ast.get_docstring(func)
+summary = ""
+if doc is not None:
+    summary = doc.splitlines()[0]
+
+data = {
+    "name": func.name,
+    "number": number,
+    "given": given,
+    "summary": summary,
+    "code": code,
+    "steps": steps,
+    "calls": calls,
+    "answer": show(answer),
+}
+
+player = Path(__file__).parent / "player.html"
+page = player.read_text().replace("/*DATA*/", json.dumps(data).replace("</", "<\\/"))
+
+with open(f"{number}.html", "w") as f:
+    f.write(page)
